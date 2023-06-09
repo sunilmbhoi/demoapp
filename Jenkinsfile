@@ -39,7 +39,7 @@ pipeline {
                     def deployUrl = "${tomcatUrl}/manager/text/deploy?path=/demoapp&update=true"
                 
                     // Use curl to deploy the WAR file
-                    sh "curl -T ${warFilePath} ${deployUrl} --user ${tomcatUser}:${tomcatPassword}"
+                    sh "curl -T ${warFilePath} ${deployUrl} -u ${tomcatUser}:${tomcatPassword}"
                 }
             }
         }
