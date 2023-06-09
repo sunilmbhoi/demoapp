@@ -32,6 +32,7 @@ pipeline {
                     def tomcatUrl = "${params.tomcatURL}"  // Replace with your Tomcat URL
                     def tomcatUser = "${params.tomcatUSER}"  // Replace with your Tomcat username
                     def tomcatPassword = "${params.tomcatUserPassword}"  // Replace with your Tomcat password
+                    //def warFilePath = "path/to/your/project/target/your-app.war"  // Replace with the actual path to your WAR file
                     def warFilePath = "${env.WORKSPACE}/target/demoapp.war" 
                 
                     // Construct the URL to deploy the WAR
@@ -41,9 +42,7 @@ pipeline {
                     //sh "curl -T ${warFilePath} ${deployUrl} -u ${tomcatUser}:${tomcatPassword}"
 
                     //def authHeader = "-H 'Authorization: Basic ' + \"\$(echo -n '${tomcatUser}:${tomcatPassword}' | base64)\""
-                    //def authHeader = "-H 'Authorization: Basic ' + \"\$(echo -n '${tomcatUser}:${tomcatPassword}' | base64 -w 0)\""
-                    def authHeader = "-u ${tomcatUser}:${tomcatPassword}"
-                    
+                    def authHeader = "-H 'Authorization: Basic ' + \"\$(echo -n '${tomcatUser}:${tomcatPassword}' | base64 -w 0)\""
                     // Use curl to deploy the WAR file with Authorization header
                     sh "curl -T ${warFilePath} ${authHeader} ${deployUrl}"
                 }
