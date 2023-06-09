@@ -27,7 +27,7 @@ pipeline {
                     def tomcatUrl = 'http://44.192.102.16:8085'  // Replace with your Tomcat URL
                     def tomcatUser = 'admin'  // Replace with your Tomcat username
                     def tomcatPassword = 'admin'  // Replace with your Tomcat password
-                    #def warFilePath = "path/to/your/project/target/your-app.war"  // Replace with the actual path to your WAR file
+                    //def warFilePath = "path/to/your/project/target/your-app.war"  // Replace with the actual path to your WAR file
                     def warFilePath = "${env.WORKSPACE}/target/demoapp.war" 
                 
                     // Construct the URL to deploy the WAR
