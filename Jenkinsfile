@@ -37,9 +37,14 @@ pipeline {
                 
                     // Construct the URL to deploy the WAR
                     def deployUrl = "${tomcatUrl}/manager/text/deploy?path=/demoapp&update=true"
-                
+                    
                     // Use curl to deploy the WAR file
-                    sh "curl -T ${warFilePath} ${deployUrl} -u ${tomcatUser}:${tomcatPassword}"
+                    //sh "curl -T ${warFilePath} ${deployUrl} -u ${tomcatUser}:${tomcatPassword}"
+
+                    def authHeader = "-H 'Authorization: Basic ' + \"\$(echo -n '${tomcatUser}:${tomcatPassword}' | base64)\""
+                    
+                    // Use curl to deploy the WAR file with Authorization header
+                    sh "curl -T ${warFilePath} ${authHeader} ${deployUrl}"
                 }
             }
         }
