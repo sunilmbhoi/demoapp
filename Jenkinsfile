@@ -29,9 +29,9 @@ pipeline {
                 // Run deployment commands here
                 // sh 'mvn deploy'
                 script {
-                    def tomcatUrl = '${params.tomcatURL}'  // Replace with your Tomcat URL
-                    def tomcatUser = '${params.tomcatUSER}'  // Replace with your Tomcat username
-                    def tomcatPassword = '${params.tomcatUserPassword}'  // Replace with your Tomcat password
+                    def tomcatUrl = "${params.tomcatURL}"  // Replace with your Tomcat URL
+                    def tomcatUser = "${params.tomcatUSER}"  // Replace with your Tomcat username
+                    def tomcatPassword = "${params.tomcatUserPassword}"  // Replace with your Tomcat password
                     //def warFilePath = "path/to/your/project/target/your-app.war"  // Replace with the actual path to your WAR file
                     def warFilePath = "${env.WORKSPACE}/target/demoapp.war" 
                 
