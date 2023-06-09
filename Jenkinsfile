@@ -3,8 +3,13 @@ pipeline {
     tools {
     maven 'maven-3.8.6'
     nodejs 'node-12.22.3' 
-  }    
-    stages {
+    }    
+   parameters {
+    string(name: 'tomcatURL', defaultValue: '', description: 'Tomcat URL')
+    string(name: 'tomcatUSER', defaultValue: '', description: 'Tomcat USER')
+    string(name: 'tomcatUserPassword', defaultValue: '', description: 'Tomcat PASSWORD')
+   }
+   stages {
         stage('Build') {
             steps {
                 // Run build commands here
@@ -24,9 +29,9 @@ pipeline {
                 // Run deployment commands here
                 // sh 'mvn deploy'
                 script {
-                    def tomcatUrl = 'http://44.192.102.16:8085'  // Replace with your Tomcat URL
-                    def tomcatUser = 'admin'  // Replace with your Tomcat username
-                    def tomcatPassword = 'admin'  // Replace with your Tomcat password
+                    def tomcatUrl = '${params.tomcatURL}'  // Replace with your Tomcat URL
+                    def tomcatUser = '${params.tomcatUSER}'  // Replace with your Tomcat username
+                    def tomcatPassword = '${params.tomcatUserPassword}'  // Replace with your Tomcat password
                     //def warFilePath = "path/to/your/project/target/your-app.war"  // Replace with the actual path to your WAR file
                     def warFilePath = "${env.WORKSPACE}/target/demoapp.war" 
                 
