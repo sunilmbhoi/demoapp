@@ -31,7 +31,7 @@ pipeline {
                     def warFilePath = "${env.WORKSPACE}/target/demoapp.war" 
                 
                     // Construct the URL to deploy the WAR
-                    def deployUrl = "${tomcatUrl}/manager/text/deploy?path=/your-app&update=true"
+                    def deployUrl = "${tomcatUrl}/manager/text/deploy?path=/demoapp&update=true"
                 
                     // Use curl to deploy the WAR file
                     sh "curl -T ${warFilePath} ${deployUrl} --user ${tomcatUser}:${tomcatPassword}"
