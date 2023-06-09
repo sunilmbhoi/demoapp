@@ -41,8 +41,8 @@ pipeline {
                     // Use curl to deploy the WAR file
                     //sh "curl -T ${warFilePath} ${deployUrl} -u ${tomcatUser}:${tomcatPassword}"
 
-                    def authHeader = "-H 'Authorization: Basic ' + \"\$(echo -n '${tomcatUser}:${tomcatPassword}' | base64)\""
-                    
+                    //def authHeader = "-H 'Authorization: Basic ' + \"\$(echo -n '${tomcatUser}:${tomcatPassword}' | base64)\""
+                    def authHeader = "-H 'Authorization: Basic ' + \"\$(echo -n '${tomcatUser}:${tomcatPassword}' | base64 -w 0)\""
                     // Use curl to deploy the WAR file with Authorization header
                     sh "curl -T ${warFilePath} ${authHeader} ${deployUrl}"
                 }
